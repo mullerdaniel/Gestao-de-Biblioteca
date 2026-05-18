@@ -7,6 +7,8 @@ import com.weg.gestao_de_biblioteca.model.Autor;
 import com.weg.gestao_de_biblioteca.repository.AutorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AutorService {
 
@@ -17,13 +19,13 @@ public class AutorService {
     }
 
 
-    public AutorResposta salvar(AutorRequisicao dto) {
-        Autor autor = AutorMapper.toEntity(dto);
+    public List<Autor> buscarAutoresSequenciaDeCaracter(String nome) {
 
-        return AutorMapper.toResposta(
-                autorRepository.save(autor)
-        );
+        return autorRepository.FindByNomeContainingIgonoreCase(nome);
+    }
+
+
 
         
     }
-}
+
